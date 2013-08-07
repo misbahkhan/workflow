@@ -1,0 +1,182 @@
+/*
+1B75BC darkest
+0A90D0 mid
+A4C2DB lightest
+*/
+
+body {
+  padding: 50px;
+  font: 14px Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #0A90D0;
+}
+
+input{
+	margin-bottom: 0px;
+}
+
+.all{
+	position: relative;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#login_header{
+	position:relative;
+	top:5%;
+	height: 500px;
+}
+
+#logo{
+	width:500px;
+	display: none;
+}
+
+#name{
+	width:375px;
+	position: relative;
+	display: none;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	border:0;
+	outline:0;
+}
+
+#pass{
+	width:375px;
+	position: relative;
+	display: none;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	border:0;
+	outline:0; 
+}
+
+.pane{
+
+}
+
+.edit{
+	display: block;
+}
+
+.caps{
+	text-transform: uppercase;
+}
+
+.lower{
+	text-transform: lowercase;
+}
+
+.num{
+
+}
+
+.label{
+	cursor: pointer;
+}
+
+.center{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.plus{
+	cursor: pointer;
+}
+
+.fixed{
+	position: fixed;
+}
+
+#key{
+	z-index: 1;
+	display: none;
+	position: fixed;
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+}
+
+#keyBox{
+	position: relative;
+	width:400px;
+	height:50%;
+	margin-top:5%;
+	display: inherit;
+	margin-left:auto;
+	margin-right:auto;
+	color:#fff;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+#chat{
+	position: relative;
+	width: auto;
+	height:500px;
+}
+
+#chatBox{
+	position: relative;
+	width: auto;
+	height:370px;
+}
+
+.show{
+	display: block;
+}
+
+.narrow{
+	width: 100px;
+}
+
+.supertiny{
+	width:10px;
+}
+
+.flight{
+	background-color: #FF0000;
+}
+
+.core{
+	background-color: #FF7F00;
+}
+
+.elevator{
+	background-color: #FFFF00;
+	color:#000;
+}
+
+.gas{
+	background-color: #00FF00;
+}
+
+.has{
+	background-color: #0000FF;
+}
+
+.claw{
+	background-color: #8B00FF;
+}
+
+.electrical{
+	background-color: #ED66B8;
+}
+
+.casing{
+	background-color: #CCC;
+}
+
+
+
+

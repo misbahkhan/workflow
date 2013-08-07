@@ -1,0 +1,11 @@
+people
+cadder of part
+cammer of part
+machiner of part
+status of part
+revision of part
+status of drawing
+drawing check
+cam program code
+quantity manufacture
+qa

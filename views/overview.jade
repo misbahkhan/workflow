@@ -1,0 +1,91 @@
+div#overview.tab-pane.pane.active
+	h2 overview
+	table.table.table-hover
+		thead
+			tr
+				th 
+					span.label CADer 
+					&nbsp;
+					span.label.label-info Drafter
+					&nbsp;
+					span.label.label-inverse CAMer
+					&nbsp;
+					span.label.label-success Machinist
+				th status
+				th 
+					span.label system 
+					&nbsp;
+					span.label.label-info part name
+					&nbsp;
+					span.label.label-inverse cam program
+		tbody
+			each part in parts
+					state = null
+					color = null
+					percent = 0
+					percent2 = 0
+					percent3 = 0
+
+					if part.system == "FLIGHT"
+						color = "flight"
+					else if part.system == "CORE"
+						color = "core"
+					else if part.system == "ELEVATOR"
+						color = "elevator" 
+					else if part.system == "ARM GAS"
+						color = "gas"
+					else if part.system == "ARM HAS"
+						color = "has"
+					else if part.system == "ARM CLAW"
+						color = "claw"
+					else if part.system == "ELECTRICAL HOUSING"
+						color = "electrical"
+					else if part.system == "CASING"
+						color = "casing"
+
+					if part.state == "QUEUED"
+						state = "error "+part._id
+					else if part.state == "PROGRESS"
+						state = "warning "+part._id
+					else if part.state == "FINISHED"
+						state = "success "+part._id
+					end
+					if part.drawing_approval == 1
+						percent = percent + 20
+					if part.cam_approval == 1
+						percent = percent + 20
+					if part.cad_approval == 1
+						percent = percent + 20
+					if part.finished == 1
+						percent = percent + 20
+					if part.quality_assurance == 1
+						percent = percent + 20
+					end
+					if percent == 100
+						percent2 = 0
+					else if percent == 80
+						percent2 = 20
+					else
+						percent2 = 20 
+						percent3 = 80 - percent
+					end
+					style1 = "width: "+percent+"%"
+					style2 = "width: "+percent2+"%"
+					style3 = "width: "+percent3+"%"
+					tr(class=state)
+						td
+							span.overview_CADer.label #{part.CADer}
+							&nbsp;
+							span.overview_Drafter.label.label-info #{part.Drafter}
+							&nbsp;
+							span.overview_CAMer.label.label-inverse #{part.CAMer}
+							&nbsp;
+							span.overview_machinist.label.label-success #{part.machinist}
+						td 
+							span.overview_state #{part.state}
+						td
+							span.overview_quantity.badge(class=color) #{part.quantity}
+							&nbsp;
+							span.overview_name.label.label-info(class=color) #{part.name}
+							&nbsp;
+							span.overview_cam.label.label-inverse #{part.cam}

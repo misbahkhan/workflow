@@ -1,0 +1,265 @@
+extends layout
+
+block content
+	#key
+		#keyBox 
+			h1 key
+			|HAS
+			br
+			|GAS
+			br
+			|ARM
+	ul#tabs.nav.nav-tabs
+		li.active
+			a(href='#overview', class='a-nav') Overview
+		li
+			a(href='#parts', class='a-nav') Parts
+		li
+			a(href='#people', class='a-nav') People
+		li
+			a(href='#machines', class='a-nav') Machines
+		li
+			a(href='#tasks', class='a-nav') Tasks
+		li
+			a(href='#chat', class='a-nav') Chat
+		li
+			a(href='#me', class='a-nav') Me			
+
+	.tab-content
+		include overview
+		div#parts.tab-pane.pane
+			h2 parts
+			table.table.table-hover
+				thead
+					tr
+						th name
+						th system
+						th part number
+						th quantity
+						th state
+						th CADer
+						th cad
+						th cad revision
+						th cad approval
+						th Drafter
+						th drawing
+						th drawing revision
+						th drawing approval
+						th CAMer
+						th cam
+						th cam revision
+						th cam approval
+						th stock material
+						th stock
+						th machinist
+						th finished
+						th quality assurance
+				tbody
+					each part in parts		
+						tr(id=part._id) 
+							td
+								input(type='text', class='edit caps input-medium', value=part.name)
+							td
+								select.span2.narrow
+									if(part.system == 'FLIGHT')
+										option(selected) FLIGHT
+										option CORE
+										option ELEVATOR
+										option ARM GAS
+										option ARM HAS
+										option ARM CLAW
+										option ELECTRICAL HOUSING
+										option CASING
+									else if(part.system == 'CORE')
+										option FLIGHT
+										option(selected) CORE
+										option ELEVATOR
+										option ARM GAS
+										option ARM HAS
+										option ARM CLAW
+										option ELECTRICAL HOUSING
+										option CASING
+									else if(part.system == 'ELEVATOR')
+										option FLIGHT
+										option CORE
+										option(selected) ELEVATOR
+										option ARM GAS
+										option ARM HAS
+										option ARM CLAW
+										option ELECTRICAL HOUSING
+										option CASING
+									else if(part.system == 'ARM GAS')
+										option FLIGHT
+										option CORE
+										option ELEVATOR
+										option(selected) ARM GAS
+										option ARM HAS
+										option ARM CLAW
+										option ELECTRICAL HOUSING
+										option CASING
+									else if(part.system == 'ARM HAS')
+										option FLIGHT
+										option CORE
+										option ELEVATOR
+										option ARM GAS
+										option(selected) ARM HAS
+										option ARM CLAW
+										option ELECTRICAL HOUSING
+										option CASING
+									else if(part.system == 'ARM CLAW')
+										option FLIGHT
+										option CORE
+										option ELEVATOR
+										option ARM GAS
+										option ARM HAS
+										option(selected) ARM CLAW
+										option ELECTRICAL HOUSING
+										option CASING
+									else if(part.system == 'ELECTRICAL HOUSING')
+										option FLIGHT
+										option CORE
+										option ELEVATOR
+										option ARM GAS
+										option ARM HAS
+										option ARM CLAW
+										option(selected) ELECTRICAL HOUSING
+										option CASING
+									else if(part.system == 'CASING')
+										option FLIGHT
+										option CORE
+										option ELEVATOR
+										option ARM GAS
+										option ARM HAS
+										option ARM CLAW
+										option ELECTRICAL HOUSING
+										option(selected) CASING
+									else
+										option NONE
+										option FLIGHT
+										option CORE
+										option ELEVATOR
+										option ARM GAS
+										option ARM HAS
+										option ARM CLAW
+										option ELECTRICAL HOUSING
+										option CASING
+							td
+								input(type='text', class='edit caps input-mini partNum', value=part.part_number)
+							td
+								input(type='text', class='edit lower input-mini supertiny', value=part.quantity)
+							td 
+								select.span2.narrow.system
+									if(part.state == 'QUEUED')
+										option(selected) QUEUED
+										option PROGRESS
+										option FINISHED
+									else if(part.state == 'PROGRESS')
+										option(selected) PROGRESS
+										option FINISHED
+										option QUEUED
+									else if(part.state == 'FINISHED')
+										option(selected) FINISHED
+										option PROGRESS
+										option QUEUED
+							td
+								input(type='text', class='edit lower name input-mini', data-provide='typeahead', auto-complete='off', value=part.CADer)
+							td
+								span(contenteditable='true', class='edit') #{part.cad}	
+							td
+								input(type='text', class='edit lower input-mini supertiny', value=part.cad_revision)
+							td
+								if part.cad_approval
+									input(type='checkbox', checked='true')
+								else
+									input(type='checkbox') 
+							td
+								input(type='text', class='edit lower name input-mini', data-provide='typeahead', auto-complete='off', value=part.Drafter)
+							td
+								span(contenteditable='true', class='edit') #{part.drawing}		
+							td
+								input(type='text', class='edit lower input-mini supertiny', value=part.drawing_revision)
+							td
+								if part.drawing_approval
+									input(type='checkbox', checked='true')
+								else
+									input(type='checkbox')
+							td
+								input(type='text', class='edit lower name input-mini', data-provide='typeahead', auto-complete='off', value=part.CAMer)  
+							td
+								span(contenteditable='true', class='edit') #{part.cam}	
+							td
+								input(type='text', class='edit lower input-mini supertiny', value=part.cam_revision)
+							td
+								if part.cam_approval
+									input(type='checkbox', checked='true')
+								else
+									input(type='checkbox') 
+							td
+								input(type='text', class='edit caps input-mini', value=part.stock_material)
+							td
+								if part.stock
+									input(type='checkbox', checked='true')
+								else
+									input(type='checkbox') 	
+							td
+								input(type='text', class='edit lower name input-mini', data-provide='typeahead', auto-complete='off', value=part.machinist) 
+							td
+								if part.finished
+									input(type='checkbox', checked='true')
+								else
+									input(type='checkbox')
+							td
+								if part.quality_assurance
+									input(type='checkbox', checked='true')
+								else
+									input(type='checkbox')
+			span(class='plus btn btn-small')
+				i.icon-plus
+				|&nbsp;new part
+		div#people.tab-pane.pane
+			h2 people
+			table.table.table-hover
+				thead
+					tr
+						th name
+						th role
+						th parts
+						th tasks
+				tbody
+					each person in people		
+						tr(id=person._id) 
+							td	
+								span #{person.name}
+							td
+								span #{person.role}
+							td
+								each part in person.parts
+									div.label.caps.array(class=part.id) #{part.name}
+									br
+							td
+								each task in person.tasks
+									div.label #{task}
+									br
+		div#machines.tab-pane.pane
+			h2 machines
+		div#tasks.tab-pane.pane
+			h2 your tasks
+		div#chat.tab-pane.pane
+			h2 chat
+			div#chatBox
+			input(id='chat_input', type='text', class='input-xxlarge', placeholder='chat')
+		div#me.tab-pane.pane
+			each person in people	
+				if person.name == user
+					h2(class=person._id) #{person.name}
+					br
+					div.input-prepend
+						span.add-on role
+						input(type='text', class='edit user', value=person.role)
+					br
+					div.input-prepend
+						span.add-on pass
+						input(type='password', class='edit user', value=person.pass)
+
+		br
+	© 2013 Delta Technologies 
